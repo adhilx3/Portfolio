@@ -1,0 +1,98 @@
+:root{
+  --bg:#fff; --surface:#f3f3f3; --ink:#0a0a0a; --muted:#5a5a62; --line:#dcdcdc;
+  --accent:#e10600; --accent-ink:#fff; --term-bg:#0a0a0a; --term-ink:#f2f2f2; --term-dim:#8d8d96; --term-ok:#ff4a40;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0a0a0a; --surface:#151515; --ink:#fff; --muted:#a6a6ae; --line:#2b2b2b;
+    --accent:#ff2d23; --term-bg:#141414; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{--bg:#0a0a0a; --surface:#151515; --ink:#fff; --muted:#a6a6ae; --line:#2b2b2b; --accent:#ff2d23; --term-bg:#141414; color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 1rem)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:60rem;margin:0 auto;padding:0 1.25rem}
+#bar{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:4px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;z-index:20}
+
+header.top{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;align-items:baseline;padding:1.5rem 0}
+header.top b{font-weight:800;font-size:1.125rem}
+header.top nav{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem}
+header.top nav a{color:var(--muted);text-decoration:none}
+header.top nav a:hover{color:var(--accent)}
+
+.hero{padding:2.5rem 0 3.5rem;display:grid;gap:3rem}
+.hero h1{margin:0;font-weight:800;font-size:clamp(3.4rem,15vw,9.5rem);line-height:.9;letter-spacing:-.045em}
+.hero h1 span{display:block}
+.hero .rule{height:10px;width:min(12rem,40%);background:var(--accent);margin:1.5rem 0 1.5rem;transform-origin:left;animation:grow 1s .2s cubic-bezier(.2,.8,.2,1) both}
+@keyframes grow{from{transform:scaleX(0)}}
+.hero p.lead{margin:0;max-width:34rem;font-size:1.25rem;color:var(--muted)}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
+.btn{display:inline-block;padding:.75rem 1.3rem;border-radius:.3rem;font:600 1rem "Bricolage Grotesque",system-ui,sans-serif;text-decoration:none;border:2px solid var(--accent);background:none;color:var(--accent);cursor:pointer;transition:transform .15s,background .15s,color .15s}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost:hover{background:var(--accent);color:var(--accent-ink)}
+
+.scan{background:var(--term-bg);color:var(--term-ink);border-radius:.5rem;border-top:6px solid var(--accent);padding:1.25rem 1.25rem 1.4rem;font:400 .9rem/1.75 "IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;overflow-x:auto}
+.scan .cmd{color:var(--term-dim)} .scan .cmd b{color:var(--term-ink);font-weight:500}
+.scan table{border-collapse:collapse;margin-top:.5rem;min-width:30rem}
+.scan th{font-weight:500;color:var(--term-dim);text-align:left;padding:0 1.5rem .2rem 0}
+.scan td{padding:0 1.5rem 0 0;white-space:nowrap}
+.scan .open{color:var(--term-ok)} .scan .note{color:var(--term-dim);margin-top:.9rem}
+@media (prefers-reduced-motion: no-preference){
+  .scan tr.row{opacity:0;animation:show .01s forwards}
+  .scan tr.row:nth-child(2){animation-delay:.6s}.scan tr.row:nth-child(3){animation-delay:1s}
+  .scan tr.row:nth-child(4){animation-delay:1.4s}.scan tr.row:nth-child(5){animation-delay:1.8s}.scan tr.row:nth-child(6){animation-delay:2.2s}
+}
+@keyframes show{to{opacity:1}}
+
+.band{background:var(--accent);color:var(--accent-ink);overflow:hidden;white-space:nowrap;padding:1rem 0;font-weight:800;font-size:clamp(1.4rem,4vw,2.4rem);letter-spacing:-.01em}
+.band div{display:inline-block;will-change:transform}
+.band i{font-style:normal;margin:0 1.25rem;opacity:.55}
+
+section{padding:4rem 0;border-top:1px solid var(--line)}
+.band + .wrap section:first-child{border-top:0}
+h2{margin:0 0 2rem;font-weight:800;font-size:clamp(2rem,6vw,3.2rem);letter-spacing:-.03em;line-height:1}
+.about p{max-width:38rem;margin:0 0 1rem}
+.facts{margin:1.75rem 0 0;padding:0;list-style:none;display:grid;gap:.5rem;max-width:38rem}
+.facts li{display:flex;gap:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+.facts span{flex:0 0 8rem;color:var(--muted)}
+
+.projects{list-style:none;margin:0;padding:0}
+.projects li{display:grid;gap:.25rem;padding:1.5rem 1rem;border-bottom:1px solid var(--line);border-left:4px solid transparent;transition:border-color .2s,background .2s,padding .2s}
+.projects li:hover{border-left-color:var(--accent);background:var(--surface);padding-left:1.5rem}
+.projects h3{margin:0;font-size:1.5rem;font-weight:600;letter-spacing:-.01em}
+.projects h3 a{text-decoration:none;color:var(--ink)}
+.projects h3 a:hover{color:var(--accent)}
+.projects p{margin:0;color:var(--muted);max-width:36rem}
+.projects .tech{font:400 .85rem "IBM Plex Mono",ui-monospace,Menlo,monospace;color:var(--accent)}
+
+.cols{display:grid;gap:2.5rem}
+.cols h3{margin:0 0 .75rem;font-size:1.05rem;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:0;padding:0;list-style:none}
+.chips li{padding:.35rem .9rem;border:2px solid var(--ink);border-radius:.3rem;font-weight:600;font-size:.95rem}
+.path{margin:0;padding:0;list-style:none;display:grid;gap:.7rem}
+.path li{display:flex;gap:.75rem;align-items:baseline}
+.path .st{flex:0 0 6rem;font:400 .8rem "IBM Plex Mono",ui-monospace,Menlo,monospace;color:var(--muted)}
+.path .done{color:var(--accent)} .path .now{color:var(--accent);font-weight:500}
+
+.contact p{max-width:34rem;margin:0 0 1.5rem}
+.handle{margin-top:1.5rem;color:var(--muted)} .handle code{font:500 1rem "IBM Plex Mono",ui-monospace,Menlo,monospace;color:var(--ink)}
+footer{padding:2rem 0 3rem;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
+
+/* scroll reveals: content stays visible if JS or motion is off */
+@media (prefers-reduced-motion: no-preference){
+  .js .reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+  .js .reveal.left{transform:translateX(-48px)}
+  .js h2.reveal{transform:none;opacity:1;clip-path:inset(0 100% 0 0);transition:clip-path .8s cubic-bezier(.7,0,.2,1)}
+  .js .reveal.in{opacity:1;transform:none}
+  .js h2.reveal.in{clip-path:inset(0 0 0 0)}
+}
+@media (min-width:52rem){
+  .projects li{grid-template-columns:16rem 1fr;gap:.25rem 2rem;align-items:baseline}
+  .projects .tech{grid-column:2}
+  .cols{grid-template-columns:1fr 1fr;gap:4rem}
+}
