@@ -2,19 +2,18 @@ import { useEffect, type RefObject } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
-
 export function useScrollReveal(
   rootRef: RefObject<HTMLElement | null>,
   prefersReducedMotion: boolean,
 ): void {
   useEffect(() => {
     const root = rootRef.current;
-    if (!root) return undefined;
-
-    if (prefersReducedMotion) {
+    if (!root || prefersReducedMotion) return undefined;
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
       return undefined;
     }
+
+    gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
       // Continuous vertical signal spine tracking scroll progress.

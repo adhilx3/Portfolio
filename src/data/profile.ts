@@ -1,3 +1,10 @@
+export interface CredentialItem {
+  title: string;
+  state: string;
+  note: string;
+  url?: string;
+}
+
 export interface LearningMilestone {
   topic: string;
   status: 'completed' | 'in-progress';
@@ -40,7 +47,7 @@ export const PROFILE = {
       note: 'Applying networking, privilege escalation, and web vulnerability concepts in legal lab environments.',
       url: 'https://tryhackme.com/p/adhil.parokkot',
     },
-  ],
+  ] as CredentialItem[],
   learningRoadmap: [
     {
       topic: 'Python, C++ & JavaScript Fundamentals',
