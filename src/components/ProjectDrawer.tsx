@@ -7,8 +7,14 @@ interface ProjectDrawerProps {
   onClose: () => void;
 }
 
+const FOCUSABLE_SELECTOR =
+  'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
 export function ProjectDrawer({ project, onClose }: ProjectDrawerProps) {
+  const dialogRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
   useEffect(() => {
     if (!project) return undefined;
@@ -21,7 +27,26 @@ export function ProjectDrawer({ project, onClose }: ProjectDrawerProps) {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        onClose();
+        onCloseRef.current();
+        return;
+      }
+
+      if (event.key === 'Tab' && dialogRef.current) {
+        const focusables = Array.from(
+          dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+        );
+        if (focusables.length === 0) return;
+
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     };
 
@@ -31,7 +56,7 @@ export function ProjectDrawer({ project, onClose }: ProjectDrawerProps) {
       document.body.style.overflow = previousOverflow;
       previousFocused?.focus();
     };
-  }, [project, onClose]);
+  }, [project]);
 
   if (!project) return null;
 
@@ -41,11 +66,12 @@ export function ProjectDrawer({ project, onClose }: ProjectDrawerProps) {
       role="presentation"
       onClick={(event) => {
         if (event.target === event.currentTarget) {
-          onClose();
+          onCloseRef.current();
         }
       }}
     >
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="drawer-project-title"
@@ -65,7 +91,7 @@ export function ProjectDrawer({ project, onClose }: ProjectDrawerProps) {
             type="button"
             className="drawer-close-btn"
             aria-label="Close architecture inspection"
-            onClick={onClose}
+            onClick={() => onCloseRef.current()}
           >
             <X size={20} aria-hidden="true" />
           </button>
@@ -132,7 +158,12 @@ export function ProjectDrawer({ project, onClose }: ProjectDrawerProps) {
             <span>Open Repository on GitHub</span>
             <ArrowUpRight size={17} aria-hidden="true" />
           </a>
-          <button type="button" className="btn btn-outline" style={{ color: 'var(--ink-dark)', borderColor: 'var(--ink-dark)' }} onClick={onClose}>
+          <button
+            type="button"
+            className="btn btn-outline"
+            style={{ color: 'var(--ink-dark)', borderColor: 'var(--ink-dark)' }}
+            onClick={() => onCloseRef.current()}
+          >
             Close
           </button>
         </div>

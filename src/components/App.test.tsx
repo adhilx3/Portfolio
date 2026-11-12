@@ -2,6 +2,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import App from '../App';
+import { ProjectDrawer } from './ProjectDrawer';
+import { FLAGSHIP_PROJECTS } from '../data/projects';
 
 describe('Adhil Parokkot Portfolio App', () => {
   beforeEach(() => {
@@ -87,4 +89,46 @@ describe('Adhil Parokkot Portfolio App', () => {
     await user.click(copyBtn);
     expect(screen.getByText(/adhilsaju3551@gmail\.com/i)).toBeInTheDocument();
   });
+
+  it('does not show Copied when navigator.clipboard is unavailable', async () => {
+    const user = userEvent.setup();
+    Object.defineProperty(navigator, 'clipboard', {
+      value: undefined,
+      configurable: true,
+    });
+
+    render(<App />);
+
+    const copyBtn = screen.getByRole('button', { name: /Copy Email/i });
+    await user.click(copyBtn);
+
+    expect(screen.queryByText(/^Copied$/i)).not.toBeInTheDocument();
+  });
+
+  it('traps Tab focus inside ProjectDrawer and preserves inner focus across onClose identity changes', async () => {
+    const user = userEvent.setup();
+    const project = FLAGSHIP_PROJECTS[0];
+    const { rerender } = render(<ProjectDrawer project={project} onClose={() => {}} />);
+
+    const closeTopBtn = screen.getByRole('button', { name: /Close architecture inspection/i });
+    const repoLink = screen.getByRole('link', { name: /Open Repository on GitHub/i });
+    const closeBottomBtn = screen.getByRole('button', { name: /^Close$/i });
+
+    expect(closeTopBtn).toHaveFocus();
+
+    // Shift+Tab from first focusable element wraps to last focusable element
+    await user.keyboard('{Shift>}{Tab}{/Shift}');
+    expect(closeBottomBtn).toHaveFocus();
+
+    // Tab from last focusable element wraps back to first
+    await user.keyboard('{Tab}');
+    expect(closeTopBtn).toHaveFocus();
+
+    // Moving focus to repoLink must survive parent rerender with a new onClose reference
+    repoLink.focus();
+    expect(repoLink).toHaveFocus();
+    rerender(<ProjectDrawer project={project} onClose={() => {}} />);
+    expect(repoLink).toHaveFocus();
+  });
 });
+

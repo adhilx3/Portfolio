@@ -145,3 +145,4 @@
 - [ ] **Step 2: Fix any visual, spacing, contrast, overflow, or scroll-trigger defects found**
 - [ ] **Step 3: Re-run full test suite (`npx vitest run`), TypeScript check (`npx tsc --noEmit`), and production build (`npm run build`)**
 - [ ] **Step 4: Write `DESIGN.md` documenting the implemented visual system and commit final verified state**
+

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { AboutSection } from './components/AboutSection';
 import { ContactFooter } from './components/ContactFooter';
 import { FlagshipProjects } from './components/FlagshipProjects';
@@ -15,6 +15,7 @@ export default function App() {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const [selectedProject, setSelectedProject] = useState<FlagshipProject | null>(null);
   const prefersReducedMotion = usePrefersReducedMotion();
+  const handleCloseDrawer = useCallback(() => setSelectedProject(null), []);
 
   useScrollReveal(rootRef, prefersReducedMotion);
 
@@ -38,8 +39,9 @@ export default function App() {
 
       <ProjectDrawer
         project={selectedProject}
-        onClose={() => setSelectedProject(null)}
+        onClose={handleCloseDrawer}
       />
     </div>
   );
 }
+

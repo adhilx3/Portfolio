@@ -587,9 +587,10 @@ ol {
 .flagship-category {
   font-family: var(--font-mono);
   font-size: 0.78rem;
+  font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--red-signal);
+  color: #ff4754;
 }
 
 .flagship-title {
@@ -971,7 +972,7 @@ ol {
   font-size: 0.78rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--red-signal);
+  color: #c41222;
   font-weight: 500;
 }
 
@@ -1075,3 +1076,4 @@ ol {
     opacity: 0.08;
   }
 }
+

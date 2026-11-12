@@ -25,17 +25,51 @@ const SOCIAL_LINKS = [
   },
 ] as const;
 
+function fallbackCopyText(text: string): boolean {
+  if (typeof document === 'undefined' || typeof document.execCommand !== 'function') {
+    return false;
+  }
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  let ok = false;
+  try {
+    ok = document.execCommand('copy');
+  } catch {
+    ok = false;
+  } finally {
+    document.body.removeChild(textarea);
+  }
+  return ok;
+}
+
 export function ContactFooter() {
-  const [copied, setCopied] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'unavailable'>('idle');
 
   const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard?.writeText(PROFILE.contact.email);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2400);
-    } catch {
-      setCopied(false);
+    if (navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(PROFILE.contact.email);
+        setCopyStatus('copied');
+        window.setTimeout(() => setCopyStatus('idle'), 2400);
+        return;
+      } catch {
+        // Fall through to legacy fallback.
+      }
     }
+
+    if (fallbackCopyText(PROFILE.contact.email)) {
+      setCopyStatus('copied');
+      window.setTimeout(() => setCopyStatus('idle'), 2400);
+      return;
+    }
+
+    setCopyStatus('unavailable');
+    window.setTimeout(() => setCopyStatus('idle'), 3000);
   };
 
   return (
@@ -62,8 +96,18 @@ export function ContactFooter() {
                 aria-label="Copy Email"
                 onClick={handleCopyEmail}
               >
-                {copied ? <Check size={17} aria-hidden="true" /> : <Copy size={17} aria-hidden="true" />}
-                <span>{copied ? 'Copied' : 'Copy Email'}</span>
+                {copyStatus === 'copied' ? (
+                  <Check size={17} aria-hidden="true" />
+                ) : (
+                  <Copy size={17} aria-hidden="true" />
+                )}
+                <span>
+                  {copyStatus === 'copied'
+                    ? 'Copied'
+                    : copyStatus === 'unavailable'
+                      ? 'Use Email Link'
+                      : 'Copy Email'}
+                </span>
               </button>
             </div>
           </div>

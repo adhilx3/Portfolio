@@ -31,3 +31,4 @@
 ## Browser Surfaces & Accessibility
 
 - Custom `::selection` in Signal Red with bone-white text, themed thin scrollbar, `#E11D2E` caret and `:focus-visible` rings, `44px+` minimum interactive target heights, and keyboard-accessible `ProjectDrawer` (`Esc` close, backdrop dismissal, focus restoration, and body scroll lock).
+

@@ -54,3 +54,4 @@ Visitors inspect on desktop and mobile browsers, skim hero credentials, scroll t
 2. **Evidence over theatrics:** Real architectures, real flags/checks, and honest learning status outperform neon hacker clichés.
 3. **Resilient by default:** GitHub rate limits, offline viewing, or reduced-motion settings never break layout or hide content.
 4. **Authorized & ethical clarity:** Security tools always carry clear legal/authorized-use framing.
+

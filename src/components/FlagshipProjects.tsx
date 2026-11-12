@@ -67,3 +67,4 @@ export function FlagshipProjects({ onInspect }: FlagshipProjectsProps) {
     </section>
   );
 }
+

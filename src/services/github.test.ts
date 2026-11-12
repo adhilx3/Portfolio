@@ -106,3 +106,4 @@ describe('fetchPublicRepos', () => {
     expect(result.repos).toEqual(FALLBACK_REPOS);
   });
 });
+
