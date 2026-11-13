@@ -337,6 +337,38 @@ ol {
     transform 180ms var(--ease-out-expo);
 }
 
+.btn svg {
+  flex-shrink: 0;
+  display: block;
+}
+
+.btn.btn-icon-only,
+.btn-icon-only {
+  width: 38px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  min-width: 38px !important;
+  max-width: 38px !important;
+  max-height: 38px !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+}
+
+.btn.btn-icon-only svg,
+.btn-icon-only svg {
+  width: 17px !important;
+  height: 17px !important;
+  min-width: 17px !important;
+  min-height: 17px !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+  stroke-width: 2.2 !important;
+}
+
 .btn:active {
   transform: translateY(1px);
 }
