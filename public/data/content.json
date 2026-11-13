@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "lastUpdated": "2026-11-13T09:40:19.789Z",
+  "lastUpdated": "2026-11-13T09:46:26.431Z",
   "flagshipProjects": [
     {
       "id": "dns-recon-scanner",
@@ -118,29 +118,6 @@
       "repoUrl": "https://github.com/adhilx3/PortScanner-Using-Nmap"
     },
     {
-      "id": "dns-recon",
-      "repoName": "Dns-Health-and-Email-Spoofing-Scanner",
-      "title": "dns-recon Scanner",
-      "category": "Email Spoofing & DNS Hygiene Auditing",
-      "summary": "Defensive reconnaissance and security auditing tool that assesses target domains for email spoofing susceptibility (SPF, DMARC, DKIM) and critical DNS hygiene vulnerabilities.",
-      "mechanism": "Parses multi-tier DNS records validating RFC 7208 SPF lookup limits, RFC 7489 DMARC policy enforcement, public DKIM key sizes, and tests for open zone transfers (AXFR).",
-      "architecture": [
-        "SPF validator traces recursive include: statements and checks the 10-lookup threshold to prevent PermError.",
-        "DMARC inspector flags relaxed alignment, partial percentages (pct < 100), and missing reporting (rua).",
-        "Automated security score generator outputting colored terminal summaries and structured JSON reports."
-      ],
-      "securityFocus": "Phishing prevention, DNS infrastructure hygiene, crypto key size audit (<2048-bit RSA flags).",
-      "tech": [
-        "Python 3.10+",
-        "dnspython",
-        "Rich Terminal UI",
-        "JSON/Markdown Reporting"
-      ],
-      "commandHint": "dns-recon audit --domain target.com --dkim-selector default --json",
-      "legalNote": "Performs standard DNS queries and non-destructive zone transfer checks; compliant with passive reconnaissance best practices.",
-      "repoUrl": "https://github.com/adhilx3/Portfolio"
-    },
-    {
       "id": "jarvis-assistant",
       "repoName": "Jarvis-",
       "title": "Jarvis Assistant",
@@ -207,7 +184,7 @@
     }
   ],
   "stats": {
-    "toolsBuilt": 7,
+    "toolsBuilt": 6,
     "labsCompleted": 6,
     "domainsMastered": 8
   }
