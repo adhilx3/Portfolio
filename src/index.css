@@ -353,6 +353,18 @@ ol {
   border-color: var(--ink-light);
 }
 
+.btn-secondary {
+  background: var(--bg-paper);
+  color: var(--ink-dark);
+  border-color: rgba(7, 7, 9, 0.15);
+}
+
+.btn-secondary:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
 .btn-outline {
   background: transparent;
   color: var(--ink-light);

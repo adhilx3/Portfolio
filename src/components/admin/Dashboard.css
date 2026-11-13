@@ -844,6 +844,68 @@
   flex-wrap: wrap;
 }
 
+/* Button Variants & Explicit High-Contrast Overrides */
+.btn-secondary {
+  background: var(--bg-paper) !important;
+  color: #070709 !important;
+  border: 1px solid rgba(7, 7, 9, 0.2) !important;
+  font-weight: 600;
+}
+
+.btn-secondary * {
+  color: #070709 !important;
+}
+
+.btn-secondary svg {
+  color: #070709 !important;
+  stroke: #070709 !important;
+}
+
+.btn-secondary:hover {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+}
+
+.btn-secondary:hover * {
+  color: #000000 !important;
+}
+
+.btn-secondary:hover svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+.btn-sm {
+  min-height: 36px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+}
+
+.btn-danger {
+  background: rgba(225, 29, 46, 0.15) !important;
+  color: #ff6b77 !important;
+  border: 1px solid rgba(225, 29, 46, 0.4) !important;
+}
+
+.btn-danger:hover {
+  background: var(--red-signal) !important;
+  color: #ffffff !important;
+}
+
+.btn-danger svg {
+  color: currentColor !important;
+}
+
+.btn-icon-only {
+  min-height: 36px;
+  width: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .admin-divider {
   border: none;
   border-top: 1px solid rgba(246, 245, 241, 0.08);
@@ -943,3 +1005,4 @@
     grid-template-columns: 1fr;
   }
 }
+
