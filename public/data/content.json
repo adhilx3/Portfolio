@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "lastUpdated": "2026-11-13T09:46:26.431Z",
+  "lastUpdated": "2026-11-13T10:05:52.559Z",
   "flagshipProjects": [
     {
       "id": "dns-recon-scanner",
@@ -50,28 +50,6 @@
       "repoUrl": "https://github.com/adhilx3/V-Scan-by-dazai"
     },
     {
-      "id": "six7-security",
-      "repoName": "Six7-X-Security",
-      "title": "Six7 Security",
-      "category": "Automated Server Defense & Anti-Raid",
-      "summary": "Modular anti-nuke and moderation bot for Discord communities built with slash-command configuration and persistent security controls.",
-      "mechanism": "Combines a multi-stage Auto-Mod filter pipeline with in-memory join-velocity tracking that triggers automated raid lockdown and verification-level escalation.",
-      "architecture": [
-        "Auto-Mod cog checks banned words, invite links, mass mentions, excessive caps, and spam rate-limits with 10-minute auto-timeout.",
-        "Anti-Raid cog tracks join timestamps per guild, flags young accounts, and initiates lockdown mode with configurable Kick/Ban/Log actions.",
-        "Persistent Discord UI verification button survives restarts via custom IDs; all events route to a central audit log channel."
-      ],
-      "securityFocus": "Rate-limiting, raid anomaly thresholds, role-hierarchy permission boundaries, audit logging.",
-      "tech": [
-        "Python",
-        "discord.py",
-        "Slash Commands",
-        "Guild Config JSON"
-      ],
-      "commandHint": "/antiraid-toggle -> /set-join-threshold -> /lockdown",
-      "repoUrl": "https://github.com/adhilx3/Six7-X-Security"
-    },
-    {
       "id": "phishing-detector",
       "repoName": "Phishing-Detector",
       "title": "Phishing Detector",
@@ -93,6 +71,28 @@
       "commandHint": "python detect.py --url https://suspicious-target.tld",
       "legalNote": "Passive lexical and heuristic analysis; does not interact with malicious endpoints or execute payloads.",
       "repoUrl": "https://github.com/adhilx3/Phishing-Detector"
+    },
+    {
+      "id": "six7-security",
+      "repoName": "Six7-X-Security",
+      "title": "Six7 Security",
+      "category": "Automated Server Defense & Anti-Raid",
+      "summary": "Modular anti-nuke and moderation bot for Discord communities built with slash-command configuration and persistent security controls.",
+      "mechanism": "Combines a multi-stage Auto-Mod filter pipeline with in-memory join-velocity tracking that triggers automated raid lockdown and verification-level escalation.",
+      "architecture": [
+        "Auto-Mod cog checks banned words, invite links, mass mentions, excessive caps, and spam rate-limits with 10-minute auto-timeout.",
+        "Anti-Raid cog tracks join timestamps per guild, flags young accounts, and initiates lockdown mode with configurable Kick/Ban/Log actions.",
+        "Persistent Discord UI verification button survives restarts via custom IDs; all events route to a central audit log channel."
+      ],
+      "securityFocus": "Rate-limiting, raid anomaly thresholds, role-hierarchy permission boundaries, audit logging.",
+      "tech": [
+        "Python",
+        "discord.py",
+        "Slash Commands",
+        "Guild Config JSON"
+      ],
+      "commandHint": "/antiraid-toggle -> /set-join-threshold -> /lockdown",
+      "repoUrl": "https://github.com/adhilx3/Six7-X-Security"
     },
     {
       "id": "portscanner-nmap",
