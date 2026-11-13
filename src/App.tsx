@@ -12,6 +12,7 @@ import type { FlagshipProject } from './data/projects';
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { usePortfolioContent } from './hooks/usePortfolioContent';
+import { useInspectGuard } from './hooks/useInspectGuard';
 
 export default function App() {
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -23,6 +24,7 @@ export default function App() {
 
   const prefersReducedMotion = usePrefersReducedMotion();
   const { content } = usePortfolioContent();
+  useInspectGuard();
   const handleCloseDrawer = useCallback(() => setSelectedProject(null), []);
 
   const handleOpenAdmin = useCallback(() => {
