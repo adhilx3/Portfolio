@@ -3,9 +3,12 @@ import { FLAGSHIP_PROJECTS, type FlagshipProject } from '../data/projects';
 
 interface FlagshipProjectsProps {
   onInspect: (project: FlagshipProject) => void;
+  projects?: FlagshipProject[];
 }
 
-export function FlagshipProjects({ onInspect }: FlagshipProjectsProps) {
+export function FlagshipProjects({ onInspect, projects = FLAGSHIP_PROJECTS }: FlagshipProjectsProps) {
+  const displayProjects = projects.length > 0 ? projects : FLAGSHIP_PROJECTS;
+
   return (
     <section id="projects" className="dark-band" aria-labelledby="projects-heading">
       <div className="container">
@@ -21,7 +24,7 @@ export function FlagshipProjects({ onInspect }: FlagshipProjectsProps) {
         </div>
 
         <div className="flagship-list">
-          {FLAGSHIP_PROJECTS.map((project) => (
+          {displayProjects.map((project) => (
             <article key={project.id} className="flagship-row" data-dossier-row>
               <div className="flagship-title-wrap">
                 <h3 className="flagship-title">{project.title}</h3>

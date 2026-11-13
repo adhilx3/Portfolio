@@ -136,3 +136,4 @@
 - [ ] Run Vite production build: `npx vite build`.
 - [ ] Verify both public site and `/admin` console render properly.
 - [ ] Commit all changes to git and push to GitHub repository.
+

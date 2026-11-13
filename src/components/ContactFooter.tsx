@@ -1,6 +1,10 @@
 import { useState } from 'react';
-import { ArrowUpRight, Check, Copy, Mail, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, Check, Copy, Mail, ShieldCheck, Terminal } from 'lucide-react';
 import { PROFILE } from '../data/profile';
+
+interface ContactFooterProps {
+  onOpenAdmin?: () => void;
+}
 
 const SOCIAL_LINKS = [
   {
@@ -47,7 +51,7 @@ function fallbackCopyText(text: string): boolean {
   return ok;
 }
 
-export function ContactFooter() {
+export function ContactFooter({ onOpenAdmin }: ContactFooterProps) {
   const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'unavailable'>('idle');
 
   const handleCopyEmail = async () => {
@@ -139,6 +143,30 @@ export function ContactFooter() {
             <span>&ldquo;{PROFILE.ethicsQuote}&rdquo;</span>
           </p>
           <p>{PROFILE.ethicsNote}</p>
+
+          {onOpenAdmin && (
+            <div style={{ marginTop: '16px', display: 'flex', justifyContent: 'center' }}>
+              <button
+                type="button"
+                onClick={onOpenAdmin}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: 'rgba(246, 245, 241, 0.45)',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.74rem',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '4px 8px',
+                }}
+              >
+                <Terminal size={13} aria-hidden="true" />
+                <span>Operator Console [Ctrl+Shift+A]</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </footer>

@@ -34,9 +34,21 @@ Unlike generic developer templates or neon "cyber" clichés, this portfolio empl
 | :--- | :--- | :--- |
 | **[V-Scan by dazai](https://github.com/adhilx3/V-Scan-by-dazai)** | Malware Triage | Desktop malware scanner computing instant SHA-256 hashes against VirusTotal v3 API; suspicious file flag breakdown and quarantine pipeline. |
 | **[Six7-X-Security](https://github.com/adhilx3/Six7-X-Security)** | Defensive Automation | Multi-layer Discord defensive operations bot featuring token-bucket anti-raid protection, regex spam triage, and tamper-evident audit logs. |
+| **[dns-recon Scanner](https://github.com/adhilx3/Portfolio)** | DNS & Email Recon | Email spoofing vulnerability auditor (SPF 10-lookup validation, DMARC enforcement, DKIM key discovery) and DNS hygiene scanner. |
 | **[Phishing Detector](https://github.com/adhilx3/Phishing-Detector)** | Threat Intel | Client-side heuristic URL safety evaluator scoring homoglyphs, IP host masquerading, excessive subdomains, and credential-harvesting patterns. |
 | **[PortScanner Using Nmap](https://github.com/adhilx3/PortScanner-Using-Nmap)** | Reconnaissance | Python-driven Nmap automation pipeline for target service discovery, version fingerprinting, and structured CSV/text reporting. |
 | **[Jarvis AI Assistant](https://github.com/adhilx3/Jarvis-)** | Command Automation | Modular Python desktop assistant featuring wake-word detection, offline fallback routing, and system execution adapters. |
+
+---
+
+## 🎛️ Operator Control Console (`/admin`)
+
+The portfolio includes an integrated, security-gated management console accessible via `https://adhilparokkot.vercel.app/admin`, the footer terminal link, or keyboard shortcut `Ctrl+Shift+A`:
+- **PIN Protected:** Default PIN `1337` (customizable inside console settings).
+- **Security Tools Studio:** Add new tools (like `dns-recon`), edit architectural dossiers, reorder display hierarchy, and toggle flagship visibility.
+- **Curriculum & Roadmap Tracker:** Real-time progress bars for CEH domains, TryHackMe labs, and active defensive tool builds.
+- **1-Click Sync & Publish:** Pushes updates directly to GitHub via REST API to trigger automated Vercel production deployments, or exports offline JSON snapshots.
+
 
 ---
 
@@ -109,3 +121,4 @@ All security scripts, scanners, and offensive-defensive tools documented in this
 - **LinkedIn:** [adhil-parokkot-86b688380](https://www.linkedin.com/in/adhil-parokkot-86b688380/)
 - **TryHackMe:** [adhil.parokkot](https://tryhackme.com/p/adhil.parokkot)
 - **Instagram:** [@adhil.parokkot](https://www.instagram.com/adhil.parokkot)
+

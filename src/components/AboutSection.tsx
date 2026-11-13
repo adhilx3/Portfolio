@@ -1,7 +1,14 @@
 import { ArrowUpRight, CheckSquare, CircleDot } from 'lucide-react';
 import { PROFILE } from '../data/profile';
+import type { RoadmapMilestone } from '../types/content';
 
-export function AboutSection() {
+interface AboutSectionProps {
+  roadmap?: RoadmapMilestone[];
+}
+
+export function AboutSection({ roadmap }: AboutSectionProps) {
+  const displayRoadmap = roadmap && roadmap.length > 0 ? roadmap : null;
+
   return (
     <section id="about" className="paper-band" aria-labelledby="about-heading">
       <div className="container">
@@ -53,30 +60,72 @@ export function AboutSection() {
               <span>Curriculum &amp; Lab Progress</span>
             </h3>
             <ul className="roadmap-items">
-              {PROFILE.learningRoadmap.map((item) => {
-                const isDone = item.status === 'completed';
-                return (
-                  <li key={item.topic} className="roadmap-item">
-                    {isDone ? (
-                      <CheckSquare
-                        size={18}
-                        className="roadmap-icon roadmap-icon--done"
-                        aria-label="Completed foundation"
-                      />
-                    ) : (
-                      <CircleDot
-                        size={18}
-                        className="roadmap-icon"
-                        aria-label="Currently studying"
-                      />
-                    )}
-                    <div>
-                      <p className="roadmap-topic">{item.topic}</p>
-                      <p className="roadmap-detail">{item.detail}</p>
-                    </div>
-                  </li>
-                );
-              })}
+              {displayRoadmap
+                ? displayRoadmap.map((item) => {
+                    const isDone = item.status === 'completed';
+                    return (
+                      <li key={item.id || item.topic} className="roadmap-item">
+                        {isDone ? (
+                          <CheckSquare
+                            size={18}
+                            className="roadmap-icon roadmap-icon--done"
+                            aria-label="Completed foundation"
+                          />
+                        ) : (
+                          <CircleDot
+                            size={18}
+                            className="roadmap-icon"
+                            aria-label="Currently studying"
+                          />
+                        )}
+                        <div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <p className="roadmap-topic">{item.topic}</p>
+                            {item.progressPercent !== undefined && !isDone && (
+                              <span
+                                style={{
+                                  fontSize: '0.72rem',
+                                  padding: '2px 6px',
+                                  background: 'rgba(225, 29, 46, 0.12)',
+                                  color: '#E11D2E',
+                                  fontWeight: 600,
+                                  fontFamily: 'var(--font-mono)',
+                                  border: '1px solid rgba(225, 29, 46, 0.3)',
+                                }}
+                              >
+                                {item.progressPercent}%
+                              </span>
+                            )}
+                          </div>
+                          <p className="roadmap-detail">{item.detail}</p>
+                        </div>
+                      </li>
+                    );
+                  })
+                : PROFILE.learningRoadmap.map((item) => {
+                    const isDone = item.status === 'completed';
+                    return (
+                      <li key={item.topic} className="roadmap-item">
+                        {isDone ? (
+                          <CheckSquare
+                            size={18}
+                            className="roadmap-icon roadmap-icon--done"
+                            aria-label="Completed foundation"
+                          />
+                        ) : (
+                          <CircleDot
+                            size={18}
+                            className="roadmap-icon"
+                            aria-label="Currently studying"
+                          />
+                        )}
+                        <div>
+                          <p className="roadmap-topic">{item.topic}</p>
+                          <p className="roadmap-detail">{item.detail}</p>
+                        </div>
+                      </li>
+                    );
+                  })}
             </ul>
           </div>
         </div>

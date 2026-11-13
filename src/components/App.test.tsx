@@ -130,5 +130,15 @@ describe('Adhil Parokkot Portfolio App', () => {
     rerender(<ProjectDrawer project={project} onClose={() => {}} />);
     expect(repoLink).toHaveFocus();
   });
+
+  it('opens Operator Console when footer button is clicked', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    const consoleBtn = screen.getByRole('button', { name: /Operator Console/i });
+    await user.click(consoleBtn);
+
+    expect(screen.getByText('Portfolio Control Room')).toBeInTheDocument();
+  });
 });
 
